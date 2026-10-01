@@ -17,8 +17,8 @@ public class IncomeController {
     private IncomeService incomeService;
 
     @PostMapping("/saveIncomeData")
-    public ResponseEntity<Income> saveIncome(@RequestBody Income income) {
-        Income i1 = incomeService.saveRecord(income);
+    public ResponseEntity<Object> saveIncome(@RequestBody Income income) {
+        Object i1 = incomeService.saveRecord(income);
         return new ResponseEntity<>(i1, HttpStatus.CREATED);
     }
 }
