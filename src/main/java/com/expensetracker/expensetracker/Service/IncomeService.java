@@ -4,5 +4,5 @@ import com.expensetracker.expensetracker.Entity.Income;
 
 
 public interface IncomeService {
-    public Income saveRecord(Income income);
+    public Object saveRecord(Income income);
 }
