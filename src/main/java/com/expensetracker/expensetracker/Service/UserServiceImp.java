@@ -34,6 +34,7 @@ public class UserServiceImp implements UserService{
             return u2;
         }
         if(u1.isEmpty()){
+            System.out.println("hi");
             throw new UserNameInvalide("please pass valide user name");
         }
         return null;
