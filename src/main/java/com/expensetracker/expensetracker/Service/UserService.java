@@ -7,4 +7,6 @@ public interface UserService {
     public User saveRecord(User user);
 
     public User getByName(String name);
+
+    public User updateByPhoneNumber(String name, Long phoneNumber);
 }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/User")
 public class UserControler {
@@ -22,6 +24,12 @@ public class UserControler {
     @GetMapping("/getUserdate/{name}")
     public ResponseEntity<User> getUser(@PathVariable String name){
         User u1=userService.getByName(name);
+        return new ResponseEntity<>(u1,HttpStatus.OK);
+    }
+
+    @PatchMapping("/upUserPhoneNumber/{name}")
+    public  ResponseEntity<User> updateUserPhoneNumber(@PathVariable String name,@RequestBody Map<String,Long> map){
+        User u1=userService.updateByPhoneNumber(name,map.get("phoneNumber"));
         return new ResponseEntity<>(u1,HttpStatus.OK);
     }
 
