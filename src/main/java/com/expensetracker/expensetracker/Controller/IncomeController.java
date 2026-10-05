@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/Income")
@@ -20,5 +24,10 @@ public class IncomeController {
     public ResponseEntity<Object> saveIncome(@RequestBody Income income) {
         Object i1 = incomeService.saveRecord(income);
         return new ResponseEntity<>(i1, HttpStatus.CREATED);
+    }
+    @GetMapping("/getIncomeByUserId/{id}")
+    public ResponseEntity<List<Income>> getIncomeByUserId(@PathVariable Integer id) {
+        List<Income> income = incomeService.getIncomeByUserId(id);
+        return new ResponseEntity<>(income, HttpStatus.OK);
     }
 }
