@@ -32,6 +32,5 @@ public class Budget {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    // Getters and Setters
 }
 
