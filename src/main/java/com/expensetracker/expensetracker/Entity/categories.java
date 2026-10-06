@@ -17,6 +17,6 @@ public class categories {
     private Integer id;
     @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String description;
 }
