@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.expensetracker.expensetracker.Entity.Income;
 import com.expensetracker.expensetracker.Repo.IncomeRepo;
+import java.util.List;
 
 import java.util.Optional;
 
@@ -30,6 +31,11 @@ public class IncomeServiceImp implements IncomeService {
             return i1;
         }
         return null;
+    }
+    @Override
+    public List<Income> getIncomeByUserId(Integer id) {
+        List<Income> income = incomeRepo.findByUser_Id(id);
+        return income;
     }
 
 }
