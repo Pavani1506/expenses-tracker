@@ -6,6 +6,7 @@ import com.expensetracker.expensetracker.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,30 @@ public class UserServiceImp implements UserService{
             System.out.println("hi");
             throw new UserNameInvalide("please pass valide user name");
         }
+        return null;
+    }
+
+    @Override
+    public List<User> getAllData() {
+        List<User> u1=userRepo.findAll();
+
+        return u1;
+    }
+
+    @Override
+    public User updateUserDataByName(String name, User user) {
+       Optional<User> u1=userRepo.findByName(name);
+       if(u1.isPresent()){
+           u1.get().setName(user.getName());
+           u1.get().setPhoneNumber(user.getPhoneNumber());
+           u1.get().setEmail(user.getEmail());
+           u1.get().setCreationDate(user.getCreationDate());
+           User u2=userRepo.save(u1.get());
+           return u2;
+       }
+       if(u1.isEmpty()){
+           throw new UserNameInvalide("please pass the valideuser name");
+       }
         return null;
     }
 }
