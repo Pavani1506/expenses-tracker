@@ -19,6 +19,6 @@ public class Categories {
     private Integer id;
     @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String description;
 }
