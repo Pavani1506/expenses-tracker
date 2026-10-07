@@ -1,11 +1,19 @@
 package com.expensetracker.expensetracker.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "budgets")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Budget {
 
     @Id
@@ -32,6 +40,5 @@ public class Budget {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    // Getters and Setters
 }
 
