@@ -21,13 +21,18 @@ public class IncomeController {
     private IncomeService incomeService;
 
     @PostMapping("/saveIncomeData")
-    public ResponseEntity<Object> saveIncome(@RequestBody Income income) {
-        Object i1 = incomeService.saveRecord(income);
+    public ResponseEntity<Income> saveIncome(@RequestBody Income income) {
+        Income i1 = incomeService.saveRecord(income);
         return new ResponseEntity<>(i1, HttpStatus.CREATED);
     }
     @GetMapping("/getIncomeByUserId/{id}")
     public ResponseEntity<List<Income>> getIncomeByUserId(@PathVariable Integer id) {
         List<Income> income = incomeService.getIncomeByUserId(id);
         return new ResponseEntity<>(income, HttpStatus.OK);
+    }
+    @GetMapping("/getAllIncomedata")
+    public ResponseEntity<List<Income>> getAllIncome(){
+        List<Income> i1=incomeService.getAllData();
+        return new ResponseEntity<>(i1,HttpStatus.OK);
     }
 }
