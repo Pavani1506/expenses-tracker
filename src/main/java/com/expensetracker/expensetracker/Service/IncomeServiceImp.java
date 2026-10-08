@@ -20,10 +20,10 @@ public class IncomeServiceImp implements IncomeService {
     private UserRepo userRepo;
 
     @Override
-    public Object saveRecord(Income income) {
+    public Income saveRecord(Income income) {
         Optional<User> u1=userRepo.findById(income.getUser().getId());
         if(u1.isEmpty()){
-            throw new UserIdInvalide("you passed worng user id");
+            throw new UserIdInvalide("you passed wrong user id");
         }
         if(u1.isPresent()) {
             Income i1 = incomeRepo.save(income);
@@ -36,6 +36,12 @@ public class IncomeServiceImp implements IncomeService {
     public List<Income> getIncomeByUserId(Integer id) {
         List<Income> income = incomeRepo.findByUser_Id(id);
         return income;
+    }
+    @Override
+    public List<Income> getAllData() {
+        List<Income> i1=incomeRepo.findAll();
+
+        return i1;
     }
 
 }

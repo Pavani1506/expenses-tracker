@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public interface IncomeService {
-    public Object saveRecord(Income income);
+    public Income saveRecord(Income income);
     public List<Income> getIncomeByUserId(Integer id);
+    public List<Income> getAllData();
 }
