@@ -1,6 +1,6 @@
 package com.expensetracker.expensetracker.Service;
 
-import com.expensetracker.expensetracker.Entity.categories;
+import com.expensetracker.expensetracker.Entity.Categories;
 import com.expensetracker.expensetracker.Repo.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +13,17 @@ public class CategoryServiceImp implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public categories saveCategory(categories category) {
+    public Categories saveCategory(Categories category) {
         return categoryRepository.save(category);
     }
 
     @Override
-    public List<categories> getAllCategories() {
+    public List<Categories> getAllCategories() {
         return categoryRepository.findAll();
     }
 
     @Override
-    public categories getCategoryById(int id) {
+    public Categories getCategoryById(int id) {
         return categoryRepository.findById(id).orElse(null);
     }
 

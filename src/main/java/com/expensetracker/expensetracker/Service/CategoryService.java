@@ -1,12 +1,12 @@
 
 package com.expensetracker.expensetracker.Service;
 
-import com.expensetracker.expensetracker.Entity.categories;
+import com.expensetracker.expensetracker.Entity.Categories;
 import java.util.List;
 
 public interface CategoryService {
-    categories saveCategory(categories category);
-    List<categories> getAllCategories();
-    categories getCategoryById(int id);
+    Categories saveCategory(Categories category);
+    List<Categories> getAllCategories();
+    Categories getCategoryById(int id);
     void deleteCategory(int id);
 }
