@@ -1,7 +1,7 @@
 
 package com.expensetracker.expensetracker.Controller;
 
-import com.expensetracker.expensetracker.Entity.categories;
+import com.expensetracker.expensetracker.Entity.Categories;
 import com.expensetracker.expensetracker.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class CategoryController {
 
 
     @PostMapping("/saveCategoryData")
-    public ResponseEntity<Object> saveCategory(@RequestBody categories category) {
+    public ResponseEntity<Object> saveCategory(@RequestBody Categories category) {
         Object c1 = categoryService.saveCategory(category);
         return new ResponseEntity<>(c1, HttpStatus.CREATED);
     }
