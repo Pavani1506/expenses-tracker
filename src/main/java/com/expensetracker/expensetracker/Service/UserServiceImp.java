@@ -1,9 +1,14 @@
 package com.expensetracker.expensetracker.Service;
 
 import com.expensetracker.expensetracker.Entity.User;
+import com.expensetracker.expensetracker.Entity.UserPage;
 import com.expensetracker.expensetracker.Exception.UserNameInvalide;
 import com.expensetracker.expensetracker.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,5 +68,16 @@ public class UserServiceImp implements UserService{
            throw new UserNameInvalide("please pass the valideuser name");
        }
         return null;
+    }
+
+    @Override
+    public  List<User> getAllUserByPage(UserPage userPage) {
+       Pageable p1 = PageRequest.of(userPage.getPage(),userPage.getPageSize());
+
+       Page<User> users =userRepo.findAll(p1);
+       List<User> users1=users.getContent();
+
+
+       return users1;
     }
 }

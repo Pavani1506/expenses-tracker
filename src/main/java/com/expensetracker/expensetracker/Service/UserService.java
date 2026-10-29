@@ -1,6 +1,8 @@
 package com.expensetracker.expensetracker.Service;
 
 import com.expensetracker.expensetracker.Entity.User;
+import com.expensetracker.expensetracker.Entity.UserPage;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -15,4 +17,6 @@ public interface UserService {
     public List<User> getAllData();
 
    public User updateUserDataByName(String name, User user);
+
+    List<User> getAllUserByPage(UserPage userPage);
 }
