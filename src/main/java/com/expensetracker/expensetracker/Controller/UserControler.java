@@ -1,8 +1,10 @@
 package com.expensetracker.expensetracker.Controller;
 
 import com.expensetracker.expensetracker.Entity.User;
+import com.expensetracker.expensetracker.Entity.UserPage;
 import com.expensetracker.expensetracker.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,10 @@ public class UserControler {
     public ResponseEntity<List<User>> getAllUser(){
         List<User> u1=userService.getAllData();
         return new ResponseEntity<>(u1,HttpStatus.OK);
+    }
+    @GetMapping("/getAllUserDataByPage")
+    public List<User> getAllUser(@RequestBody UserPage userPage){
+       return userService.getAllUserByPage(userPage);
     }
 
     @PutMapping("/updateUserdetailsByName/{name}")
