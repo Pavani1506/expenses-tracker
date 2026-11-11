@@ -71,13 +71,15 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public  List<User> getAllUserByPage(UserPage userPage) {
-       Pageable p1 = PageRequest.of(userPage.getPage(),userPage.getPageSize());
-
-       Page<User> users =userRepo.findAll(p1);
-       List<User> users1=users.getContent();
-
-
-       return users1;
+    public  List<User> getAllUserByPage(UserPage userPage,Sort ascending,String name) {
+       Pageable p1 = PageRequest.of(userPage.getPage(),userPage.getPageSize(),ascending);
+       if(name == null) {
+           Page<User> users = userRepo.findAll(p1);
+           List<User> users1 = users.getContent();
+           return users1;
+       }
+           Page<User> users =userRepo.findByName(name,p1);
+           List<User> users1=users.getContent();
+           return users1;
     }
 }

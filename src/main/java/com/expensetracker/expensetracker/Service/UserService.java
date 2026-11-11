@@ -3,6 +3,7 @@ package com.expensetracker.expensetracker.Service;
 import com.expensetracker.expensetracker.Entity.User;
 import com.expensetracker.expensetracker.Entity.UserPage;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface UserService {
 
    public User updateUserDataByName(String name, User user);
 
-    List<User> getAllUserByPage(UserPage userPage);
+    List<User> getAllUserByPage(UserPage userPage, Sort ascending,String name);
 }
