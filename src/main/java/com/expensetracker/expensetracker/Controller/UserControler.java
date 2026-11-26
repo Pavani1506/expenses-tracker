@@ -1,13 +1,16 @@
 package com.expensetracker.expensetracker.Controller;
 
+import com.expensetracker.expensetracker.DTO.AccountCreation;
 import com.expensetracker.expensetracker.Entity.User;
 import com.expensetracker.expensetracker.Entity.UserPage;
+import com.expensetracker.expensetracker.Service.KafkaMessage;
 import com.expensetracker.expensetracker.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,11 +21,19 @@ import java.util.Map;
 public class UserControler {
     @Autowired
     private UserService userService;
+    @Autowired
+    private KafkaMessage kafkaMessage;
 
     @PostMapping("/saveUserData")
     public ResponseEntity<User> saveUser(@RequestBody User user){
         User u1=userService.saveRecord(user);
         return new ResponseEntity<>(u1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/Kafka/Mesaage")
+    public ResponseEntity<AccountCreation> getMessage(){
+       AccountCreation accountCreation= kafkaMessage.getAccountCreation();
+       return new ResponseEntity<>(accountCreation,HttpStatus.OK);
     }
 
     @GetMapping("/getUserdate/{name}")
