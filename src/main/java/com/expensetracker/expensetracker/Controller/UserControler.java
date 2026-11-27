@@ -1,5 +1,6 @@
 package com.expensetracker.expensetracker.Controller;
 
+import com.expensetracker.expensetracker.Client.AccountCreation1;
 import com.expensetracker.expensetracker.DTO.AccountCreation;
 import com.expensetracker.expensetracker.Entity.User;
 import com.expensetracker.expensetracker.Entity.UserPage;
@@ -23,6 +24,9 @@ public class UserControler {
     private UserService userService;
     @Autowired
     private KafkaMessage kafkaMessage;
+
+    @Autowired
+    private AccountCreation1 accountCreation1;
 
     @PostMapping("/saveUserData")
     public ResponseEntity<User> saveUser(@RequestBody User user){
@@ -65,6 +69,11 @@ public class UserControler {
     public ResponseEntity<User> upDateUserByName(@PathVariable String name,@RequestBody User user){
         User u1=userService.updateUserDataByName(name,user);
         return new ResponseEntity<>(u1,HttpStatus.OK);
+    }
+
+    @PostMapping("/sendMessage/RestTemplate/Kafak")
+    public ResponseEntity<String> sendAccount(@RequestBody AccountCreation accountCreation){
+       return accountCreation1.getData(accountCreation);
     }
 
 }
